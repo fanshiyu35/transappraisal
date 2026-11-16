@@ -1,112 +1,913 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex, nofollow">
-<title>TransAppraisal Systems B.V. — Transit Planning and Appraisal Software</title>
-<meta name="description" content="TransAppraisal Systems B.V., Utrecht — AppraisalStudio, software for transit investment appraisal, including the Staged-Delay BCA (SDI-BCA) module.">
-<link rel="icon" type="image/svg+xml" href="/favicon.svg">
-<link rel="stylesheet" href="/styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#1a362d">
+  <title>TransAppraisal Systems B.V.</title>
+
+  <style>
+    :root {
+      --green: #1a362d;
+      --green-light: #29483d;
+      --green-muted: #53685d;
+      --gold: #b79b65;
+      --gold-light: #d3c39d;
+      --terracotta: #b4533a;
+      --paper: #faf9f6;
+      --white: #ffffff;
+      --ink: #26352e;
+      --muted: #737a71;
+      --line: #e7e4dc;
+      --serif: Georgia, "Times New Roman", serif;
+      --sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      --content: 1160px;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 15px;
+      line-height: 1.8;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(var(--content), calc(100% - 64px));
+      margin-inline: auto;
+    }
+
+    /* Header */
+
+    .site-header {
+      position: relative;
+      background: var(--green);
+      color: var(--white);
+      border-bottom: 1px solid rgba(183, 155, 101, 0.7);
+    }
+
+    .header-inner {
+      min-height: 146px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 42px;
+      padding-top: 25px;
+      padding-bottom: 25px;
+    }
+
+    .brand {
+      min-width: 270px;
+    }
+
+    .brand-meta {
+      margin-bottom: 9px;
+      color: #c3c9c0;
+      font-size: 10px;
+      letter-spacing: 0.045em;
+      line-height: 1.6;
+    }
+
+    .brand-contact {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0 13px;
+      margin-bottom: 12px;
+      color: #c3c9c0;
+      font-size: 10px;
+      letter-spacing: 0.04em;
+    }
+
+    .brand-contact a {
+      transition: color 0.2s ease;
+    }
+
+    .brand-contact a:hover {
+      color: var(--gold-light);
+    }
+
+    .brand-name {
+      display: flex;
+      align-items: baseline;
+      gap: 7px;
+      color: var(--white);
+      font-family: var(--serif);
+      font-size: 33px;
+      font-weight: 400;
+      letter-spacing: -1.5px;
+      line-height: 1.15;
+    }
+
+    .brand-name span:last-child {
+      color: var(--gold-light);
+    }
+
+    .brand-tagline {
+      margin-top: 7px;
+      color: #c1c9c0;
+      font-size: 10px;
+      letter-spacing: 0.075em;
+    }
+
+    .main-nav {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+      gap: 28px;
+    }
+
+    .main-nav a {
+      position: relative;
+      padding: 8px 0;
+      color: #e1e5df;
+      font-size: 12px;
+      letter-spacing: 0.045em;
+      transition: color 0.2s ease;
+    }
+
+    .main-nav a::after {
+      position: absolute;
+      right: 0;
+      bottom: 1px;
+      left: 0;
+      height: 1px;
+      background: var(--gold);
+      content: "";
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.25s ease;
+    }
+
+    .main-nav a:hover {
+      color: var(--gold-light);
+    }
+
+    .main-nav a:hover::after {
+      transform: scaleX(1);
+    }
+
+    /* Hero */
+
+    .hero {
+      padding: 112px 0 108px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .hero-content {
+      max-width: 900px;
+    }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 30px;
+      color: var(--terracotta);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      display: block;
+      width: 38px;
+      height: 1px;
+      background: var(--gold);
+      content: "";
+    }
+
+    .hero h1 {
+      max-width: 850px;
+      margin: 0;
+      color: var(--green);
+      font-family: var(--serif);
+      font-size: clamp(42px, 5.7vw, 69px);
+      font-weight: 400;
+      letter-spacing: -2.1px;
+      line-height: 1.12;
+    }
+
+    .hero-description {
+      max-width: 760px;
+      margin-top: 31px;
+      color: #626c64;
+      font-size: 15px;
+      line-height: 2;
+    }
+
+    .hero-description p {
+      margin: 0;
+    }
+
+    /* Section headings */
+
+    .section-heading {
+      margin-bottom: 53px;
+    }
+
+    .section-kicker {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 13px;
+      color: var(--terracotta);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    .section-kicker::before {
+      width: 26px;
+      height: 1px;
+      background: var(--gold);
+      content: "";
+    }
+
+    .section-heading h2 {
+      margin: 0;
+      color: var(--green);
+      font-family: var(--serif);
+      font-size: clamp(30px, 3.5vw, 42px);
+      font-weight: 400;
+      letter-spacing: -0.8px;
+      line-height: 1.25;
+    }
+
+    /* Features */
+
+    .features {
+      padding: 98px 0 106px;
+      background: var(--white);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 30px;
+    }
+
+    .feature-card {
+      position: relative;
+      min-height: 265px;
+      padding: 27px 19px 25px 0;
+      border-top: 1px solid var(--gold-light);
+    }
+
+    .feature-number {
+      display: block;
+      margin-bottom: 25px;
+      color: var(--terracotta);
+      font-family: var(--serif);
+      font-size: 31px;
+      font-weight: 400;
+      line-height: 1;
+    }
+
+    .feature-card h3 {
+      margin: 0 0 17px;
+      color: var(--green);
+      font-family: var(--serif);
+      font-size: 21px;
+      font-weight: 400;
+      line-height: 1.35;
+    }
+
+    .feature-card p {
+      margin: 0;
+      color: #727970;
+      font-size: 13px;
+      line-height: 1.9;
+    }
+
+    /* Adoption */
+
+    .adoption {
+      padding: 103px 0 96px;
+      background: #f2f1eb;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .adoption .section-heading {
+      margin-bottom: 46px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      max-width: 790px;
+      margin-bottom: 45px;
+    }
+
+    .stat {
+      padding: 12px 45px 19px 0;
+    }
+
+    .stat + .stat {
+      padding-left: 46px;
+      border-left: 1px solid #d9d5c9;
+    }
+
+    .stat-number {
+      display: block;
+      margin-bottom: 12px;
+      color: var(--green);
+      font-family: var(--serif);
+      font-size: clamp(65px, 8vw, 91px);
+      font-weight: 400;
+      letter-spacing: -4px;
+      line-height: 1.05;
+    }
+
+    .stat-description {
+      max-width: 290px;
+      color: #687168;
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    .adoption-note {
+      max-width: 760px;
+      padding-top: 25px;
+      border-top: 1px solid #d9d5c9;
+      color: #687168;
+      font-size: 13px;
+      line-height: 1.9;
+    }
+
+    .customer-link {
+      display: inline-block;
+      margin-top: 13px;
+      color: var(--green);
+      font-family: var(--serif);
+      font-size: 17px;
+      transition: color 0.2s ease;
+    }
+
+    .customer-link:hover {
+      color: var(--terracotta);
+    }
+
+    /* Latest news */
+
+    .latest {
+      padding: 98px 0 112px;
+      background: var(--paper);
+    }
+
+    .latest .section-heading {
+      margin-bottom: 43px;
+    }
+
+    .release-entry {
+      display: grid;
+      grid-template-columns: 165px minmax(0, 1fr);
+      gap: 35px;
+      max-width: 900px;
+      padding: 34px 0;
+      border-top: 1px solid var(--gold-light);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .release-type {
+      padding-top: 3px;
+      color: var(--terracotta);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    .release-content h3 {
+      margin: 0 0 15px;
+      color: var(--green);
+      font-family: var(--serif);
+      font-size: clamp(23px, 3vw, 29px);
+      font-weight: 400;
+      letter-spacing: -0.4px;
+      line-height: 1.4;
+    }
+
+    .release-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 9px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .release-meta .separator {
+      color: var(--gold);
+    }
+
+    .release-meta .release-link {
+      color: var(--green);
+      border-bottom: 1px solid var(--gold-light);
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .release-meta .release-link:hover {
+      color: var(--terracotta);
+      border-color: var(--terracotta);
+    }
+
+    /* Footer */
+
+    .site-footer {
+      padding: 58px 0 35px;
+      background: var(--green);
+      color: #e5e8e2;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 40px;
+      padding-bottom: 42px;
+    }
+
+    .footer-company {
+      color: var(--white);
+      font-family: var(--serif);
+      font-size: 24px;
+      font-weight: 400;
+      letter-spacing: -0.3px;
+    }
+
+    .footer-address {
+      margin-top: 11px;
+      color: #bfc8bf;
+      font-size: 12px;
+      line-height: 1.9;
+    }
+
+    .footer-contact {
+      padding-top: 7px;
+      color: #c6cec5;
+      font-size: 12px;
+      line-height: 2;
+      text-align: right;
+    }
+
+    .footer-contact a {
+      transition: color 0.2s ease;
+    }
+
+    .footer-contact a:hover {
+      color: var(--gold-light);
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      padding-top: 22px;
+      border-top: 1px solid rgba(211, 195, 157, 0.28);
+      color: #9da99e;
+      font-size: 10px;
+      letter-spacing: 0.035em;
+    }
+
+    .footer-mark {
+      width: 34px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    /* Responsive */
+
+    @media (max-width: 1000px) {
+      .header-inner {
+        gap: 25px;
+      }
+
+      .main-nav {
+        gap: 17px;
+      }
+
+      .feature-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        column-gap: 42px;
+        row-gap: 20px;
+      }
+
+      .feature-card {
+        min-height: 230px;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .container {
+        width: min(100% - 40px, var(--content));
+      }
+
+      .header-inner {
+        min-height: auto;
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 24px;
+        padding-top: 24px;
+        padding-bottom: 25px;
+      }
+
+      .brand {
+        min-width: 0;
+      }
+
+      .brand-meta {
+        max-width: 340px;
+        font-size: 9px;
+      }
+
+      .brand-contact {
+        font-size: 10px;
+      }
+
+      .brand-name {
+        font-size: 30px;
+      }
+
+      .brand-tagline {
+        font-size: 9px;
+      }
+
+      .main-nav {
+        width: 100%;
+        justify-content: flex-start;
+        gap: 11px 23px;
+        padding-top: 17px;
+        border-top: 1px solid rgba(211, 195, 157, 0.24);
+      }
+
+      .main-nav a {
+        font-size: 11px;
+      }
+
+      .hero {
+        padding: 76px 0 76px;
+      }
+
+      .hero h1 {
+        font-size: clamp(39px, 10vw, 55px);
+        letter-spacing: -1.5px;
+      }
+
+      .hero-description {
+        margin-top: 24px;
+        font-size: 14px;
+      }
+
+      .features,
+      .adoption,
+      .latest {
+        padding: 75px 0;
+      }
+
+      .section-heading {
+        margin-bottom: 37px;
+      }
+
+      .feature-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+      }
+
+      .feature-card {
+        min-height: auto;
+        padding: 24px 0 30px;
+      }
+
+      .feature-number {
+        margin-bottom: 17px;
+        font-size: 27px;
+      }
+
+      .feature-card h3 {
+        font-size: 21px;
+      }
+
+      .feature-card p {
+        max-width: 460px;
+      }
+
+      .stats-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+
+      .stat {
+        padding-right: 17px;
+      }
+
+      .stat + .stat {
+        padding-left: 20px;
+      }
+
+      .stat-number {
+        font-size: 65px;
+      }
+
+      .stat-description {
+        font-size: 12px;
+      }
+
+      .release-entry {
+        grid-template-columns: 1fr;
+        gap: 13px;
+        padding: 27px 0;
+      }
+
+      .release-content h3 {
+        font-size: 24px;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        gap: 25px;
+      }
+
+      .footer-contact {
+        text-align: left;
+      }
+
+      .footer-bottom {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stat,
+      .stat + .stat {
+        padding: 10px 0 24px;
+        border-left: 0;
+      }
+
+      .stat + .stat {
+        border-top: 1px solid #d9d5c9;
+        padding-top: 24px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<div class="topline">
-  <div class="wrap">
-    <span>TransAppraisal Systems B.V. · Maliebaan 30, 3581 CN Utrecht, the Netherlands</span>
-    <span><a href="mailto:info@transappraisal.com">info@transappraisal.com</a> · <a href="tel:+31305550147">+31 30 555 0147</a></span>
-  </div>
-</div>
+  <header class="site-header">
+    <div class="container header-inner">
 
-<header class="masthead">
-  <div class="wrap">
-    <div class="wordmark">Trans<span>Appraisal</span></div>
-    <div class="sub">Transit investment appraisal software · Utrecht, the Netherlands</div>
-  </div>
-</header>
+      <div class="brand">
+        <div class="brand-meta">
+          TransAppraisal Systems B.V. · Maliebaan 30, 3581 CN Utrecht, the Netherlands
+        </div>
 
-<nav class="nav">
-  <ul>
-    <li class="active"><a href="/">Home</a></li>
-    <li><a href="/products/">Products</a></li>
-    <li><a href="/support/">Support</a></li>
-    <li><a href="/news/">News</a></li>
-    <li><a href="/customers/">Customers</a></li>
-    <li><a href="/contact/">Contact</a></li>
-  </ul>
-</nav>
+        <div class="brand-contact">
+          <a href="mailto:info@transappraisal.com">info@transappraisal.com</a>
+          <span>·</span>
+          <a href="tel:+31305550147">+31 30 555 0147</a>
+        </div>
 
-<div class="hero">
-  <div class="wrap">
-    <div class="eyebrow">AppraisalStudio 4.2 · Staged-Delay BCA module</div>
-    <h1>Appraisal that accounts for the delays that arrive in stages.</h1>
-    <p class="lead">AppraisalStudio is our platform for transit and road investment appraisal. Version 4.2 introduced the Staged-Delay BCA (SDI-BCA) module — a licensed implementation of Staged-Delay-Inclusive Benefit-Cost Analysis that reports, stage by stage, how implementation delays change net present value and the benefit-cost ratio.</p>
-    <div class="rule"></div>
-  </div>
-</div>
+        <a class="brand-name" href="#home" aria-label="TransAppraisal">
+          <span>Trans</span>
+          <span>Appraisal</span>
+        </a>
 
-<section>
-  <div class="wrap">
-    <h2>What SDI-BCA adds to conventional appraisal</h2>
-    <div class="cols2">
-      <div class="item">
-        <div class="no">01</div>
-        <h3>Stage dependency graphs</h3>
-        <p>Stage dependency graphs are defined per project template; delays propagate automatically to dependent stages with fractional-year pro-rating.</p>
+        <div class="brand-tagline">
+          Transit investment appraisal software · Utrecht, the Netherlands
+        </div>
       </div>
-      <div class="item">
-        <div class="no">02</div>
-        <h3>Marginal decomposition</h3>
-        <p>Outputs include the stage-level marginal decomposition of the change in net present value and the benefit-cost ratio, with interaction terms reported separately.</p>
-      </div>
-      <div class="item">
-        <div class="no">03</div>
-        <h3>Licensed method</h3>
-        <p>SDI-BCA is implemented under a software and technology licence from the University of California, Irvine and Ms. Yanxi Liu (Agreement UCI-OTA-2025-017, 20 June 2025), following the procedure of NTRP Research Report No. 231 (June 2025).</p>
-      </div>
-      <div class="item">
-        <div class="no">04</div>
-        <h3>European frameworks</h3>
-        <p>Version 4.2 adds new data import profiles for European appraisal frameworks, alongside usability improvements to the scenario comparison view.</p>
-      </div>
-    </div>
-  </div>
-</section>
 
-<section class="alt">
-  <div class="wrap">
-    <h2>Adoption</h2>
-    <div class="stats">
-      <div class="stat"><div class="num">64</div><div class="lbl">customer organisations with the Staged-Delay BCA module enabled in production</div></div>
-      <div class="stat"><div class="num">6</div><div class="lbl">countries with enabled customers (as of 30 September 2026)</div></div>
-    </div>
-    <p style="margin-top:22px; color:#55503f;">The module is available in the Project Appraisal module under the terms of each customer's licence agreement. <a href="/customers/">Customer sectors and anonymised case summaries</a>.</p>
-  </div>
-</section>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="#home">Home</a>
+        <a href="#products">Products</a>
+        <a href="#support">Support</a>
+        <a href="#news">News</a>
+        <a href="#customers">Customers</a>
+        <a href="#contact">Contact</a>
+      </nav>
 
-<section>
-  <div class="wrap">
-    <h2>Latest</h2>
-    <div class="item">
-      <div class="no">Release</div>
-      <h3>AppraisalStudio 4.2 — Staged-Delay BCA module ships</h3>
-      <p>18 September 2025 · <a href="/support/release-notes/4-2">Release notes</a> · <a href="/news/2025-09-18-appraisalstudio-42.html">Announcement</a></p>
     </div>
-  </div>
-</section>
+  </header>
 
-<footer class="sitefoot">
-  <div class="wrap">
-    <div>
-      <p><strong>TransAppraisal Systems B.V.</strong></p>
-      <p>Maliebaan 30, 3581 CN Utrecht, the Netherlands</p>
+  <main>
+
+    <!-- Hero -->
+
+    <section class="hero" id="home">
+      <div class="container">
+        <div class="hero-content">
+
+          <div class="eyebrow">
+            AppraisalStudio 4.2 · Staged-Delay BCA module
+          </div>
+
+          <h1>
+            Appraisal that accounts for the delays that arrive in stages.
+          </h1>
+
+          <div class="hero-description">
+            <p>
+              AppraisalStudio is our platform for transit and road investment appraisal. Version 4.2 introduced the Staged-Delay BCA (SDI-BCA) module — a licensed implementation of Staged-Delay-Inclusive Benefit-Cost Analysis that reports, stage by stage, how implementation delays change net present value and the benefit-cost ratio.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Products / Features -->
+
+    <section class="features" id="products">
+      <div class="container">
+
+        <div class="section-heading">
+          <h2>What SDI-BCA adds to conventional appraisal</h2>
+        </div>
+
+        <div class="feature-grid">
+
+          <article class="feature-card">
+            <span class="feature-number">01</span>
+            <h3>Stage dependency graphs</h3>
+            <p>
+              Stage dependency graphs are defined per project template; delays propagate automatically to dependent stages with fractional-year pro-rating.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <span class="feature-number">02</span>
+            <h3>Marginal decomposition</h3>
+            <p>
+              Outputs include the stage-level marginal decomposition of the change in net present value and the benefit-cost ratio, with interaction terms reported separately.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <span class="feature-number">03</span>
+            <h3>Licensed method</h3>
+            <p>
+              SDI-BCA is implemented under a software and technology licence from the University of California, Irvine and Ms. Yanxi Liu (Agreement UCI-OTA-2025-017, 20 June 2025), following the procedure of NTRP Research Report No. 231 (June 2025).
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <span class="feature-number">04</span>
+            <h3>European frameworks</h3>
+            <p>
+              Version 4.2 adds new data import profiles for European appraisal frameworks, alongside usability improvements to the scenario comparison view.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Adoption -->
+
+    <section class="adoption" id="customers">
+      <div class="container">
+
+        <div class="section-heading">
+          <h2>Adoption</h2>
+        </div>
+
+        <div class="stats-grid">
+
+          <div class="stat">
+            <span class="stat-number">64</span>
+            <div class="stat-description">
+              customer organisations with the Staged-Delay BCA module enabled in production
+            </div>
+          </div>
+
+          <div class="stat">
+            <span class="stat-number">6</span>
+            <div class="stat-description">
+              countries with enabled customers (as of 30 September 2026)
+            </div>
+          </div>
+
+        </div>
+
+        <div class="adoption-note" id="support">
+          The module is available in the Project Appraisal module under the terms of each customer's licence agreement.
+
+          <div>
+            <a class="customer-link" href="#customers">
+              Customer sectors and anonymised case summaries
+            </a>
+            <span>.</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Latest News -->
+
+    <section class="latest" id="news">
+      <div class="container">
+
+        <div class="section-heading">
+          <h2>Latest</h2>
+        </div>
+
+        <article class="release-entry">
+
+          <div class="release-type">
+            Release
+          </div>
+
+          <div class="release-content">
+            <h3>
+              AppraisalStudio 4.2 — Staged-Delay BCA module ships
+            </h3>
+
+            <div class="release-meta">
+              <span>18 September 2025</span>
+              <span class="separator">·</span>
+              <a class="release-link" href="#news">Release notes</a>
+              <span class="separator">·</span>
+              <a class="release-link" href="#news">Announcement</a>
+            </div>
+          </div>
+
+        </article>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+
+  <footer class="site-footer" id="contact">
+    <div class="container">
+
+      <div class="footer-inner">
+
+        <div class="footer-company-block">
+          <div class="footer-company">
+            TransAppraisal Systems B.V.
+          </div>
+
+          <div class="footer-address">
+            Maliebaan 30, 3581 CN Utrecht, the Netherlands
+          </div>
+        </div>
+
+        <div class="footer-contact">
+          <a href="mailto:info@transappraisal.com">info@transappraisal.com</a>
+          <span> · </span>
+          <a href="tel:+31305550147">+31 30 555 0147</a>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <span>© TransAppraisal Systems B.V.</span>
+        <span class="footer-mark"></span>
+      </div>
+
     </div>
-    <div>
-      <p><a href="mailto:info@transappraisal.com">info@transappraisal.com</a> · <a href="tel:+31305550147">+31 30 555 0147</a></p>
-      <p>© TransAppraisal Systems B.V.</p>
-    </div>
-  </div>
-</footer>
+  </footer>
 
 </body>
 </html>
